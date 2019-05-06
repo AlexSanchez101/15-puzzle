@@ -1,126 +1,218 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/GameScreen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Square.tscn" type="PackedScene" id=2]
+[ext_resource path="res://themes/head.tres" type="Theme" id=2]
+[ext_resource path="res://Scenes/Square.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Theme" id=3]
+Dialogs/constants/button_margin = 32
+Dialogs/constants/margin = 8
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://themes/font/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+font_data = SubResource( 4 )
 
 [node name="GameScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 15.995, 84.099 ],
+"_edit_lock_": true
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -145.0
+margin_bottom = 83.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 17
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ShuffleButton" type="Button" parent="MarginContainer2"]
+margin_top = 17.0
+margin_right = 130.0
+margin_bottom = 83.0
+theme = ExtResource( 2 )
+text = "Перемешать"
+
+[node name="Counters" type="MarginContainer" parent="."]
+editor/display_folded = true
+margin_right = 136.0
+margin_bottom = 100.0
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Counters"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 136.0
+margin_bottom = 85.0
+
+[node name="MovesCounter" type="PanelContainer" parent="Counters/VBoxContainer"]
+margin_right = 121.0
+margin_bottom = 33.0
+theme = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Counters/VBoxContainer/MovesCounter"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 114.0
+margin_bottom = 26.0
+
+[node name="CounterName" type="Label" parent="Counters/VBoxContainer/MovesCounter/HBoxContainer"]
+margin_right = 57.0
+margin_bottom = 19.0
+text = "Ходов:"
+
+[node name="CounterValue" type="Label" parent="Counters/VBoxContainer/MovesCounter/HBoxContainer"]
+margin_left = 61.0
+margin_right = 96.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 35, 0 )
+text = "999"
+align = 1
+
+[node name="Time" type="PanelContainer" parent="Counters/VBoxContainer"]
+margin_top = 37.0
+margin_right = 121.0
+margin_bottom = 70.0
+theme = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Counters/VBoxContainer/Time"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 114.0
+margin_bottom = 26.0
+
+[node name="TimerName" type="Label" parent="Counters/VBoxContainer/Time/HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 19.0
+text = "Время:"
+
+[node name="TimerValue" type="Label" parent="Counters/VBoxContainer/Time/HBoxContainer"]
+margin_left = 62.0
+margin_right = 107.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 45, 0 )
+text = "00:99"
+align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 100.0
 custom_constants/margin_right = 15
 custom_constants/margin_left = 15
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 15.0
 margin_right = 345.0
-margin_bottom = 640.0
-
-[node name="Head" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-editor/display_folded = true
-margin_right = 330.0
-margin_bottom = 44.0
-custom_constants/margin_top = 15
-custom_constants/margin_bottom = 15
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Head"]
-margin_top = 15.0
-margin_right = 330.0
-margin_bottom = 29.0
-text = "Test"
-align = 1
+margin_bottom = 540.0
 
 [node name="GameField" type="GridContainer" parent="MarginContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 48.0
 margin_right = 330.0
-margin_bottom = 354.0
+margin_bottom = 306.0
 custom_constants/vseparation = 2
 custom_constants/hseparation = 2
 columns = 4
 
-[node name="Square0" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square0" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_right = 81.0
 
-[node name="Square1" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square1" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 83.0
 margin_right = 164.0
 
-[node name="Square2" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square2" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 166.0
 margin_right = 247.0
 
-[node name="Square3" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square3" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 249.0
 margin_right = 330.0
 
-[node name="Square4" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square4" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_top = 77.0
 margin_right = 81.0
 margin_bottom = 152.0
 
-[node name="Square5" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square5" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 83.0
 margin_top = 77.0
 margin_right = 164.0
 margin_bottom = 152.0
 
-[node name="Square6" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square6" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 166.0
 margin_top = 77.0
 margin_right = 247.0
 margin_bottom = 152.0
 
-[node name="Square7" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square7" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 249.0
 margin_top = 77.0
 margin_right = 330.0
 margin_bottom = 152.0
 
-[node name="Square8" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square8" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_top = 154.0
 margin_right = 81.0
 margin_bottom = 229.0
 
-[node name="Square9" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square9" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 83.0
 margin_top = 154.0
 margin_right = 164.0
 margin_bottom = 229.0
 
-[node name="Square10" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square10" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 166.0
 margin_top = 154.0
 margin_right = 247.0
 margin_bottom = 229.0
 
-[node name="Square11" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square11" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 249.0
 margin_top = 154.0
 margin_right = 330.0
 margin_bottom = 229.0
 
-[node name="Square12" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square12" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_top = 231.0
 margin_right = 81.0
 margin_bottom = 306.0
 
-[node name="Square13" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square13" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 83.0
 margin_top = 231.0
 margin_right = 164.0
 margin_bottom = 306.0
 
-[node name="Square14" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square14" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 166.0
 margin_top = 231.0
 margin_right = 247.0
 margin_bottom = 306.0
 
-[node name="Square15" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 2 )]
+[node name="Square15" parent="MarginContainer/VBoxContainer/GameField" instance=ExtResource( 3 )]
 margin_left = 249.0
 margin_top = 231.0
 margin_right = 330.0
@@ -128,15 +220,36 @@ margin_bottom = 306.0
 disabled = true
 
 [node name="Bottom" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 358.0
+margin_top = 310.0
 margin_right = 330.0
-margin_bottom = 393.0
+margin_bottom = 325.0
 custom_constants/margin_top = 15
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bottom"]
-margin_top = 15.0
-margin_right = 330.0
-margin_bottom = 35.0
-text = "Shuffle"
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Bottom/Button" to="." method="_refresh_called"]
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -165.0
+margin_right = 101.0
+margin_bottom = -71.0
+theme = SubResource( 3 )
+window_title = ""
+
+[node name="Label2" type="Label" parent="AcceptDialog"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -39.0
+margin_right = -8.0
+margin_bottom = 11.0
+custom_fonts/font = SubResource( 5 )
+text = "Поздравляю!
+Пятнашки собраны"
+align = 1
+[connection signal="pressed" from="MarginContainer2/ShuffleButton" to="." method="_refresh_called"]
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_AcceptDialog_confirmed"]
+[connection signal="custom_action" from="AcceptDialog" to="." method="_on_AcceptDialog_custom_action"]
